@@ -1,0 +1,1982 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Reinforcement learning environments for algorithmic trading">
+      
+      
+        <meta name="author" content="TorchTrade Team">
+      
+      
+        <link rel="canonical" href="https://torchtrade.github.io/torchtrade/components/actors/">
+      
+      
+        <link rel="prev" href="../transforms/">
+      
+      
+        <link rel="next" href="../../guides/custom-features/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>Actors - TorchTrade Documentation</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="orange">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#trading-actors" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="TorchTrade Documentation" class="md-header__button md-logo" aria-label="TorchTrade Documentation" data-md-component="logo">
+      
+  <img src="../../images/torchtrade_white.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            TorchTrade Documentation
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Actors
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="orange"  aria-label="Switch to Light Mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to Light Mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h10a5 5 0 0 0 5-5 5 5 0 0 0-5-5m0 8a3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 1-3 3"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="grey" data-md-color-accent="orange"  aria-label="Switch to Dark Mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to Dark Mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 6H7c-3.31 0-6 2.69-6 6s2.69 6 6 6h10c3.31 0 6-2.69 6-6s-2.69-6-6-6m0 10H7c-2.21 0-4-1.79-4-4s1.79-4 4-4h10c2.21 0 4 1.79 4 4s-1.79 4-4 4M7 9c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/TorchTrade/torchtrade" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    TorchTrade/torchtrade
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../getting-started/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Getting Started
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../examples/" class="md-tabs__link">
+          
+  
+  
+  Examples
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../environments/offline/" class="md-tabs__link">
+          
+  
+  
+  Environments
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../losses/" class="md-tabs__link">
+          
+  
+  
+  Components
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../guides/custom-features/" class="md-tabs__link">
+          
+  
+  
+  Advanced Customization
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="TorchTrade Documentation" class="md-nav__button md-logo" aria-label="TorchTrade Documentation" data-md-component="logo">
+      
+  <img src="../../images/torchtrade_white.png" alt="logo">
+
+    </a>
+    TorchTrade Documentation
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/TorchTrade/torchtrade" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    TorchTrade/torchtrade
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../getting-started/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Getting Started
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Examples
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Examples
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../examples/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../examples/results/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Results
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Environments
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Environments
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../environments/offline/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Offline Environments
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../environments/portfolio/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Portfolio Environment
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../environments/visualization/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Visualization
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../environments/online/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Online Environments
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../environments/offline-rl/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Offline RL
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guides/sampler/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Understanding the Sampler
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guides/custom-environment/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Building Custom Environments
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Components
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Components
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../losses/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Loss Functions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../transforms/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Transforms
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Actors
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Actors
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#available-actors" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Available Actors
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#rulebasedactor" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        RuleBasedActor
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="RuleBasedActor">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#meanreversionactor" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        MeanReversionActor
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#frontierllmactor" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        FrontierLLMActor
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#localllmactor" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        LocalLLMActor
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="LocalLLMActor">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#batched-parallel-env-inference" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Batched / Parallel-Env Inference
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#action-extraction" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Action Extraction
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tool-use" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tool use
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Tool use">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#googlenewstool" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GoogleNewsTool
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#polymarkettool" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        PolymarketTool
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#see-also" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        See Also
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Advanced Customization
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Advanced Customization
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guides/custom-features/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Feature Engineering
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guides/reward-functions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Reward Functions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guides/metrics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Performance Metrics
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#available-actors" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Available Actors
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#rulebasedactor" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        RuleBasedActor
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="RuleBasedActor">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#meanreversionactor" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        MeanReversionActor
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#frontierllmactor" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        FrontierLLMActor
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#localllmactor" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        LocalLLMActor
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="LocalLLMActor">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#batched-parallel-env-inference" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Batched / Parallel-Env Inference
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#action-extraction" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Action Extraction
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tool-use" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tool use
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Tool use">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#googlenewstool" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GoogleNewsTool
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#polymarkettool" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        PolymarketTool
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#see-also" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        See Also
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+                
+
+
+
+  
+
+
+  <nav class="md-path" aria-label="Navigation" >
+    <ol class="md-path__list">
+      
+        
+  
+  
+    <li class="md-path__item">
+      <a href="../.." class="md-path__link">
+        
+  <span class="md-ellipsis">
+    Home
+  </span>
+
+      </a>
+    </li>
+  
+
+      
+      
+        
+  
+  
+    
+    
+      <li class="md-path__item">
+        <a href="../losses/" class="md-path__link">
+          
+  <span class="md-ellipsis">
+    Components
+  </span>
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ol>
+  </nav>
+
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="trading-actors">Trading Actors<a class="headerlink" href="#trading-actors" title="Permanent link">&para;</a></h1>
+<p>Trading actors implement the policy interface for TorchTrade environments. Beyond standard neural network policies, TorchTrade provides rule-based strategies and LLM-powered agents.</p>
+<h2 id="available-actors">Available Actors<a class="headerlink" href="#available-actors" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Actor</th>
+<th>Type</th>
+<th>Use Case</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="https://github.com/TorchTrade/torchtrade/blob/main/torchtrade/actor/rulebased/base.py"><strong>RuleBasedActor</strong></a></td>
+<td>Deterministic Strategy</td>
+<td>Baselines, debugging, research benchmarks</td>
+</tr>
+<tr>
+<td><a href="https://github.com/TorchTrade/torchtrade/blob/main/torchtrade/actor/rulebased/meanreversion/actor.py"><strong>MeanReversionActor</strong></a></td>
+<td>Rule-Based (Bollinger + Stoch RSI)</td>
+<td>Ranging markets, baseline comparisons</td>
+</tr>
+<tr>
+<td><a href="https://github.com/TorchTrade/torchtrade/blob/main/torchtrade/actor/frontier_llm_actor.py"><strong>FrontierLLMActor</strong></a></td>
+<td>LLM (API)</td>
+<td>Research, rapid prototyping with GPT/Claude</td>
+</tr>
+<tr>
+<td><a href="https://github.com/TorchTrade/torchtrade/blob/main/torchtrade/actor/local_llm_actor.py"><strong>LocalLLMActor</strong></a></td>
+<td>LLM (Local inference)</td>
+<td>Production, privacy, cost efficiency</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="rulebasedactor">RuleBasedActor<a class="headerlink" href="#rulebasedactor" title="Permanent link">&para;</a></h2>
+<p>Abstract base class for deterministic trading strategies. Follows a two-phase pattern: <strong>preprocess</strong> (compute indicators on full dataset upfront) then <strong>decide</strong> (extract features and apply rules at each step).</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">torchtrade.actor.rulebased.base</span><span class="w"> </span><span class="kn">import</span> <span class="n">RuleBasedActor</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="k">class</span><span class="w"> </span><span class="nc">MyStrategy</span><span class="p">(</span><span class="n">RuleBasedActor</span><span class="p">):</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">get_preprocessing_fn</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>        <span class="k">def</span><span class="w"> </span><span class="nf">preprocess</span><span class="p">(</span><span class="n">df</span><span class="p">):</span>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>            <span class="n">df</span><span class="p">[</span><span class="s2">"features_sma_20"</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">"close"</span><span class="p">]</span><span class="o">.</span><span class="n">rolling</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>            <span class="n">df</span><span class="p">[</span><span class="s2">"features_rsi_14"</span><span class="p">]</span> <span class="o">=</span> <span class="n">compute_rsi</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s2">"close"</span><span class="p">],</span> <span class="mi">14</span><span class="p">)</span>
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>            <span class="k">return</span> <span class="n">df</span>
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>        <span class="k">return</span> <span class="n">preprocess</span>
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">select_action</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">observation</span><span class="p">):</span>
+</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>        <span class="n">data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">extract_market_data</span><span class="p">(</span><span class="n">observation</span><span class="p">)</span>
+</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>        <span class="n">sma</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_feature</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="s2">"features_sma_20"</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>        <span class="n">rsi</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_feature</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="s2">"features_rsi_14"</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+</span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>
+</span><span id="__span-0-16"><a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>        <span class="k">if</span> <span class="n">rsi</span> <span class="o">&lt;</span> <span class="mi">30</span> <span class="ow">and</span> <span class="n">price</span> <span class="o">&lt;</span> <span class="n">sma</span><span class="p">:</span>
+</span><span id="__span-0-17"><a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>            <span class="k">return</span> <span class="mi">2</span>  <span class="c1"># Buy</span>
+</span><span id="__span-0-18"><a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a>        <span class="k">elif</span> <span class="n">rsi</span> <span class="o">&gt;</span> <span class="mi">70</span> <span class="ow">and</span> <span class="n">price</span> <span class="o">&gt;</span> <span class="n">sma</span><span class="p">:</span>
+</span><span id="__span-0-19"><a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a>            <span class="k">return</span> <span class="mi">0</span>  <span class="c1"># Sell</span>
+</span><span id="__span-0-20"><a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a>        <span class="k">return</span> <span class="mi">1</span>  <span class="c1"># Hold</span>
+</span></code></pre></div>
+<h3 id="meanreversionactor">MeanReversionActor<a class="headerlink" href="#meanreversionactor" title="Permanent link">&para;</a></h3>
+<p>Concrete implementation using Bollinger Bands and Stochastic RSI. Buys when price is below lower band with oversold Stoch RSI, sells when above upper band with overbought Stoch RSI.</p>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>bb_window</code></td>
+<td>20</td>
+<td>Bollinger Bands period</td>
+</tr>
+<tr>
+<td><code>bb_std</code></td>
+<td>2.0</td>
+<td>Bollinger Bands standard deviations</td>
+</tr>
+<tr>
+<td><code>stoch_rsi_window</code></td>
+<td>14</td>
+<td>Stochastic RSI period</td>
+</tr>
+<tr>
+<td><code>oversold_threshold</code></td>
+<td>20.0</td>
+<td>Stoch RSI oversold level</td>
+</tr>
+<tr>
+<td><code>overbought_threshold</code></td>
+<td>80.0</td>
+<td>Stoch RSI overbought level</td>
+</tr>
+</tbody>
+</table>
+<p>See <code>examples/rule_based/</code> for offline and live usage examples.</p>
+<hr />
+<h2 id="frontierllmactor">FrontierLLMActor<a class="headerlink" href="#frontierllmactor" title="Permanent link">&para;</a></h2>
+<p>LLM-based actor using frontier model APIs (OpenAI, Anthropic, etc.) for trading decisions. Constructs prompts from market data and account state, queries the LLM, and parses actions from structured <code>&lt;think&gt;...&lt;answer&gt;</code> responses.</p>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>model</code></td>
+<td><code>"gpt-5-nano"</code></td>
+<td>Model identifier</td>
+</tr>
+<tr>
+<td><code>symbol</code></td>
+<td><code>"BTC/USD"</code></td>
+<td>Trading symbol for prompt context</td>
+</tr>
+<tr>
+<td><code>action_dict</code></td>
+<td><code>{"buy": 2, "sell": 0, "hold": 1}</code></td>
+<td>Action name to index mapping</td>
+</tr>
+<tr>
+<td><code>debug</code></td>
+<td><code>False</code></td>
+<td>Print prompts and responses</td>
+</tr>
+</tbody>
+</table>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">torchtrade.actor</span><span class="w"> </span><span class="kn">import</span> <span class="n">FrontierLLMActor</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="n">actor</span> <span class="o">=</span> <span class="n">FrontierLLMActor</span><span class="p">(</span>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>    <span class="n">market_data_keys</span><span class="o">=</span><span class="n">env</span><span class="o">.</span><span class="n">market_data_keys</span><span class="p">,</span>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>    <span class="n">account_state</span><span class="o">=</span><span class="n">env</span><span class="o">.</span><span class="n">account_state</span><span class="p">,</span>
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>    <span class="n">model</span><span class="o">=</span><span class="s2">"gpt-4-turbo"</span><span class="p">,</span>
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="p">)</span>
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>
+</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="n">observation</span> <span class="o">=</span> <span class="n">env</span><span class="o">.</span><span class="n">reset</span><span class="p">()</span>
+</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a><span class="n">output</span> <span class="o">=</span> <span class="n">actor</span><span class="p">(</span><span class="n">observation</span><span class="p">)</span>  <span class="c1"># Returns tensordict with "action" and "thinking"</span>
+</span></code></pre></div>
+<p>Requires <code>OPENAI_API_KEY</code> in <code>.env</code>. See <code>examples/llm/frontier/</code> for offline and live examples.</p>
+<hr />
+<h2 id="localllmactor">LocalLLMActor<a class="headerlink" href="#localllmactor" title="Permanent link">&para;</a></h2>
+<p>Local LLM-based actor using vLLM or transformers for inference. Same prompt interface as FrontierLLMActor but runs models locally.</p>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>model</code></td>
+<td><code>"Qwen/Qwen2.5-0.5B-Instruct"</code></td>
+<td>HuggingFace model ID</td>
+</tr>
+<tr>
+<td><code>backend</code></td>
+<td><code>"vllm"</code></td>
+<td><code>"vllm"</code> (faster, CUDA) or <code>"transformers"</code> (portable)</td>
+</tr>
+<tr>
+<td><code>quantization</code></td>
+<td><code>None</code></td>
+<td><code>None</code>, <code>"4bit"</code>, or <code>"8bit"</code></td>
+</tr>
+<tr>
+<td><code>max_tokens</code></td>
+<td><code>512</code></td>
+<td>Maximum tokens to generate</td>
+</tr>
+<tr>
+<td><code>temperature</code></td>
+<td><code>0.7</code></td>
+<td>Sampling temperature</td>
+</tr>
+<tr>
+<td><code>action_space_type</code></td>
+<td><code>"standard"</code></td>
+<td><code>"standard"</code>, <code>"sltp"</code>, or <code>"futures_sltp"</code></td>
+</tr>
+</tbody>
+</table>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">torchtrade.actor</span><span class="w"> </span><span class="kn">import</span> <span class="n">LocalLLMActor</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="n">actor</span> <span class="o">=</span> <span class="n">LocalLLMActor</span><span class="p">(</span>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>    <span class="n">model</span><span class="o">=</span><span class="s2">"Qwen/Qwen2.5-1.5B-Instruct"</span><span class="p">,</span>
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>    <span class="n">backend</span><span class="o">=</span><span class="s2">"vllm"</span><span class="p">,</span>
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>    <span class="n">quantization</span><span class="o">=</span><span class="s2">"4bit"</span><span class="p">,</span>
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="p">)</span>
+</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>
+</span><span id="__span-2-9"><a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a><span class="n">output</span> <span class="o">=</span> <span class="n">actor</span><span class="p">(</span><span class="n">observation</span><span class="p">)</span>
+</span></code></pre></div>
+<p>For SLTP environments, pass <code>action_space_type="sltp"</code> and <code>action_map=env.action_map</code>. See <code>examples/llm/local/</code> for offline and live examples.</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>pip<span class="w"> </span>install<span class="w"> </span>torchtrade<span class="o">[</span>llm<span class="o">]</span><span class="w">  </span><span class="c1"># Installs vllm, transformers, bitsandbytes</span>
+</span></code></pre></div>
+<h3 id="batched-parallel-env-inference">Batched / Parallel-Env Inference<a class="headerlink" href="#batched-parallel-env-inference" title="Permanent link">&para;</a></h3>
+<p><code>LocalLLMActor</code> accepts a batched tensordict (<code>batch_size=[N]</code>), such as one
+produced by <code>ParallelEnv</code>, and generates N trading decisions in a single pass:
+it builds N prompts, runs one vLLM call, and writes N actions back into the
+tensordict. A single, unbatched observation still works exactly as before, so
+existing offline/live scripts require no changes. <code>generate_batch</code> is the
+extension point for adding batched generation to new backends. See
+<code>examples/llm/local/parallel.py</code> for a full example.</p>
+<h3 id="action-extraction">Action Extraction<a class="headerlink" href="#action-extraction" title="Permanent link">&para;</a></h3>
+<p>Both LLM actors parse the model's chosen action from a <code>&lt;answer&gt;N&lt;/answer&gt;</code> tag.
+That logic lives in one reusable pure function:</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">torchtrade.actor.parsers</span><span class="w"> </span><span class="kn">import</span> <span class="n">extract_action</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="n">idx</span> <span class="o">=</span> <span class="n">extract_action</span><span class="p">(</span><span class="s2">"&lt;think&gt;...&lt;/think&gt;&lt;answer&gt;2&lt;/answer&gt;"</span><span class="p">,</span> <span class="n">num_actions</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>  <span class="c1"># -&gt; 2</span>
+</span></code></pre></div>
+<p>It returns the integer <code>N</code> when <code>0 &lt;= N &lt; num_actions</code>, and falls back to action
+<code>0</code> (logging a warning) when the tag is missing or out of range — a trading agent
+must always emit a valid action.</p>
+<h3 id="tool-use">Tool use<a class="headerlink" href="#tool-use" title="Permanent link">&para;</a></h3>
+<p>Configure <code>tools=[...]</code> to let the actor call tools before deciding. Tools run
+only when configured (live path); without them the actor is single-shot as before.</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">torchtrade.actor</span><span class="w"> </span><span class="kn">import</span> <span class="n">LocalLLMActor</span>
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="kn">from</span><span class="w"> </span><span class="nn">torchtrade.actor.tools</span><span class="w"> </span><span class="kn">import</span> <span class="n">GoogleNewsTool</span><span class="p">,</span> <span class="n">PolymarketTool</span>
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="n">actor</span> <span class="o">=</span> <span class="n">LocalLLMActor</span><span class="p">(</span>
+</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>    <span class="n">model</span><span class="o">=</span><span class="s2">"Qwen/Qwen2.5-0.5B-Instruct"</span><span class="p">,</span> <span class="n">backend</span><span class="o">=</span><span class="s2">"vllm"</span><span class="p">,</span>
+</span><span id="__span-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a>    <span class="n">market_data_keys</span><span class="o">=</span><span class="n">env</span><span class="o">.</span><span class="n">market_data_keys</span><span class="p">,</span>
+</span><span id="__span-5-7"><a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a>    <span class="n">account_state_labels</span><span class="o">=</span><span class="n">env</span><span class="o">.</span><span class="n">account_state</span><span class="p">,</span>
+</span><span id="__span-5-8"><a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a>    <span class="n">action_levels</span><span class="o">=</span><span class="n">env</span><span class="o">.</span><span class="n">action_levels</span><span class="p">,</span>
+</span><span id="__span-5-9"><a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a>    <span class="n">symbol</span><span class="o">=</span><span class="s2">"BTC/USD"</span><span class="p">,</span>
+</span><span id="__span-5-10"><a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a>    <span class="n">tools</span><span class="o">=</span><span class="p">[</span>
+</span><span id="__span-5-11"><a id="__codelineno-5-11" name="__codelineno-5-11" href="#__codelineno-5-11"></a>        <span class="n">GoogleNewsTool</span><span class="p">(</span><span class="n">symbol</span><span class="o">=</span><span class="s2">"BTC/USD"</span><span class="p">),</span>
+</span><span id="__span-5-12"><a id="__codelineno-5-12" name="__codelineno-5-12" href="#__codelineno-5-12"></a>        <span class="n">PolymarketTool</span><span class="p">(</span><span class="n">symbol</span><span class="o">=</span><span class="s2">"BTC/USD"</span><span class="p">),</span>
+</span><span id="__span-5-13"><a id="__codelineno-5-13" name="__codelineno-5-13" href="#__codelineno-5-13"></a>    <span class="p">],</span>
+</span><span id="__span-5-14"><a id="__codelineno-5-14" name="__codelineno-5-14" href="#__codelineno-5-14"></a>    <span class="n">max_tool_iters</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span>
+</span><span id="__span-5-15"><a id="__codelineno-5-15" name="__codelineno-5-15" href="#__codelineno-5-15"></a><span class="p">)</span>
+</span></code></pre></div>
+<p>Pass tools individually rather than bundling sources behind flags — the list is
+the configuration. Several tools still cost a single tool iteration, because the
+model may emit more than one <code>&lt;tool&gt;</code> block per turn and they all resolve into
+one <code>&lt;tool_results&gt;</code> block.</p>
+<p>The model calls a tool with <code>&lt;tool name="google_news"&gt;{"query": "Bitcoin"}&lt;/tool&gt;</code>
+(torchrl <code>XMLBlockParser</code> convention) and receives a <code>&lt;tool_results&gt;...&lt;/tool_results&gt;</code>
+block, then continues until it emits <code>&lt;answer&gt;N&lt;/answer&gt;</code>. Only conversations that
+call a tool are re-generated, so batched multi-symbol inference stays efficient.
+Tool use requires <code>backend="vllm"</code> (the transformers backend can't halt at
+<code>&lt;/tool&gt;</code>) and the <code>[llm]</code> extra (adds <code>feedparser</code>).</p>
+<h4 id="googlenewstool"><code>GoogleNewsTool</code><a class="headerlink" href="#googlenewstool" title="Permanent link">&para;</a></h4>
+<p>Recent headlines for the traded asset, from Google News RSS — free, no key. Requires
+the <code>[llm]</code> extra (adds <code>feedparser</code>).</p>
+<ul>
+<li><strong>Headlines are a third-party trust boundary.</strong> <code>title</code> and <code>source</code> are authored by
+  whoever gets a story indexed by Google News (<code>published</code> is Google's own), and unlike
+  <code>PolymarketTool</code> there is no volume floor or other content filter deciding what
+  reaches the prompt — only a <code>top_n</code> count cap. Every rendered field is collapsed to
+  a single capped line before it enters the context, because a newline would
+  otherwise let one entry occupy two numbered rows and fabricate a headline the model
+  cannot distinguish from genuine tool output (#308).</li>
+<li><strong>Inline markup is neutralised at the assembly seam.</strong> A literal <code>&lt;/tool_results&gt;</code> in
+  a headline used to close the results block early, handing everything after it to the
+  model as its own reasoning (#330). Every protocol tag is now escaped in tool output,
+  matched case-insensitively and tolerant of whitespace and attributes -- the consumer is
+  a model, not a strict parser, so it honours <code>&lt;/TOOL_RESULTS&gt;</code> just as readily.</li>
+<li><strong>This is a live-path tool.</strong> It returns news as of <em>now</em>, so using it during
+  offline replay would show a historical episode present-day headlines.</li>
+</ul>
+<h4 id="polymarkettool"><code>PolymarketTool</code><a class="headerlink" href="#polymarkettool" title="Permanent link">&para;</a></h4>
+<p>Prediction-market odds for the traded asset, from Polymarket's public Gamma API —
+free, no key, no account. It reuses the <code>MarketScanner</code> that backs
+<code>PolymarketBetEnv</code>, so it inherits that client's fetching, retry and filtering
+machinery — but sets its own budget and thresholds, which differ from the live
+env's (see below).</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="n">PolymarketTool</span><span class="p">(</span><span class="n">symbol</span><span class="o">=</span><span class="s2">"BTC/USD"</span><span class="p">,</span> <span class="n">top_n</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">min_volume_24h</span><span class="o">=</span><span class="mi">10_000</span><span class="p">,</span>
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>               <span class="n">min_liquidity</span><span class="o">=</span><span class="mi">5_000</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="mf">5.0</span><span class="p">)</span>
+</span></code></pre></div>
+<p>The keyword defaults to the traded symbol via <code>symbol_to_query()</code> (<code>BTC</code> →
+<code>"Bitcoin"</code>); the model can override it per call with
+<code>&lt;tool name="polymarket"&gt;{"query": "Fed"}&lt;/tool&gt;</code>. Output is a ranked list of
+questions with the YES probability and 24h volume:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>Prediction markets for 'Bitcoin':
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>1. Will the price of Bitcoin be above $64,000 on August 10? — YES 97.0% · 24h vol $74,568
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>2. Bitcoin Up or Down on August 10? — YES 32.4% · 24h vol $131,842
+</span></code></pre></div>
+<p>A row of strike-based markets is effectively a market-implied price distribution,
+which is information OHLCV cannot express. Probabilities are rendered to one
+decimal on purpose: a market at 0.9962 near resolution must not read as <code>100%</code>.</p>
+<p>Four things to keep in mind:</p>
+<ul>
+<li><strong><code>min_volume_24h</code> / <code>min_liquidity</code> are a content filter, not just noise
+  reduction.</strong> Market questions are user-authored and land in the model's context
+  verbatim, so low-volume markets are the injection surface. Every free-text
+  field the tool renders — market questions <em>and</em> the model's own <code>query</code> — is
+  collapsed to a single capped line, because a newline would otherwise let one
+  field render as a second numbered row and fabricate a market. Lower these
+  floors deliberately.</li>
+<li><strong>An empty result does not mean no markets exist.</strong> <code>MarketScanner.scan()</code> logs
+  and returns <code>[]</code> when the Gamma API is unreachable, so the tool cannot tell an
+  outage from a genuinely empty result and deliberately says so rather than
+  asserting an absence it never verified.</li>
+<li><strong>The tool blocks the collection step.</strong> <code>_resolve_tools</code> resolves tool calls
+  sequentially across the batch, so per-call latency is serialised onto the
+  policy call inside <code>SyncDataCollector</code>/<code>env.rollout()</code>. The tool spends
+  <code>timeout=5.0</code> over 2 attempts — roughly 11s worst case, against the scanner's
+  default of roughly 48s. Budget that against <strong>your</strong> <code>execute_on</code> cadence, not
+  against <code>PolymarketBetEnv</code>'s: with <code>max_tool_iters=3</code> the worst case is ~33s
+  per conversation, which is comfortable on a <code>1Hour</code> step and most of the
+  budget on a <code>1Min</code> one.</li>
+<li><strong>This is a live-path tool.</strong> It returns markets that are open <em>now</em>, so using
+  it during offline replay would show a historical episode present-day
+  probabilities. Restrict it to live trading, as with <code>GoogleNewsTool</code>.</li>
+</ul>
+<hr />
+<h2 id="see-also">See Also<a class="headerlink" href="#see-also" title="Permanent link">&para;</a></h2>
+<ul>
+<li><a href="../../examples/#llm-actors">Examples: LLM Actors</a> - Full example scripts</li>
+<li><a href="../../examples/#rule-based-actors">Examples: Rule-Based Actors</a> - Mean reversion examples</li>
+<li><a href="https://pytorch.org/rl/reference/modules.html#actors">TorchRL Actors</a> - Neural network policies</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../transforms/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Transforms">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Transforms
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../../guides/custom-features/" class="md-footer__link md-footer__link--next" aria-label="Next: Feature Engineering">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Feature Engineering
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      © 2025 <a href="https://github.com/TorchTrade" target="_blank" rel="noopener">TorchTrade</a>
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        
+<div class="md-social">
+  
+    
+    
+    
+    
+    <a href="https://github.com/TorchTrade/torchtrade" target="_blank" rel="noopener" title="TorchTrade on GitHub" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M202.1 328.7c0 20.9-10.9 55.1-36.7 55.1s-36.7-34.2-36.7-55.1 10.9-55.1 36.7-55.1 36.7 34.2 36.7 55.1M496 278.2c0 31.9-3.2 65.7-17.5 95-37.9 76.6-142.1 74.8-216.7 74.8-75.8 0-186.2 2.7-225.6-74.8-14.6-29-20.2-63.1-20.2-95 0-41.9 13.9-81.5 41.5-113.6-5.2-15.8-7.7-32.4-7.7-48.8 0-21.5 4.9-32.3 14.6-51.8 45.3 0 74.3 9 108.8 36 29-6.9 58.8-10 88.7-10 27 0 54.2 2.9 80.4 9.2 34-26.7 63-35.2 107.8-35.2 9.8 19.5 14.6 30.3 14.6 51.8 0 16.4-2.6 32.7-7.7 48.2 27.5 32.4 39 72.3 39 114.2m-64.3 50.5c0-43.9-26.7-82.6-73.5-82.6-18.9 0-37 3.4-56 6-14.9 2.3-29.8 3.2-45.1 3.2-15.2 0-30.1-.9-45.1-3.2-18.7-2.6-37-6-56-6-46.8 0-73.5 38.7-73.5 82.6 0 87.8 80.4 101.3 150.4 101.3h48.2c70.3 0 150.6-13.4 150.6-101.3m-82.6-55.1c-25.8 0-36.7 34.2-36.7 55.1s10.9 55.1 36.7 55.1 36.7-34.2 36.7-55.1-10.9-55.1-36.7-55.1"/></svg>
+    </a>
+  
+    
+    
+    
+    
+    <a href="https://pypi.org/project/torchtrade/" target="_blank" rel="noopener" title="TorchTrade on PyPI" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.8 200.5c-7.7-30.9-22.3-54.2-53.4-54.2h-40.1v47.4c0 36.8-31.2 67.8-66.8 67.8H172.7c-29.2 0-53.4 25-53.4 54.3v101.8c0 29 25.2 46 53.4 54.3 33.8 9.9 66.3 11.7 106.8 0 26.9-7.8 53.4-23.5 53.4-54.3v-40.7H226.2v-13.6h160.2c31.1 0 42.6-21.7 53.4-54.2 11.2-33.5 10.7-65.7 0-108.6M286.2 444.7a20.4 20.4 0 1 1 0-40.7 20.4 20.4 0 1 1 0 40.7M167.8 248.1h106.8c29.7 0 53.4-24.5 53.4-54.3V91.9c0-29-24.4-50.7-53.4-55.6-35.8-5.9-74.7-5.6-106.8.1-45.2 8-53.4 24.7-53.4 55.6v40.7h106.9v13.6h-147c-31.1 0-58.3 18.7-66.8 54.2-9.8 40.7-10.2 66.1 0 108.6 7.6 31.6 25.7 54.2 56.8 54.2H101v-48.8c0-35.3 30.5-66.4 66.8-66.4m-6.6-183.4a20.4 20.4 0 1 1 0 40.8 20.4 20.4 0 1 1 0-40.8"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.tracking", "navigation.sections", "navigation.top", "navigation.expand", "navigation.path", "navigation.footer", "search.suggest", "search.highlight", "content.tabs.link", "content.code.annotation", "content.code.copy"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+        <script src="../../javascripts/mathjax.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>
